@@ -106,7 +106,6 @@ const Swipeout = React.createClass({
     scroll: PropTypes.func,
     style: View.propTypes.style,
     sensitivity: PropTypes.number,
-    childrenPress: PropTypes.func,
   },
 
   getDefaultProps: function() {
@@ -230,8 +229,6 @@ const Swipeout = React.createClass({
         this.setState({ contentPos: 0, openedLeft: false, openedRight: false, swiping: false });
       }
     }
-    // children can click
-    if (Math.abs(posX) < 20 && timeDiff && typeof this.props.childrenPress !== 'undefined') this.props.childrenPress(true)
     //  Allow scroll
     if (this.props.scroll) this.props.scroll(true);
   },
@@ -315,8 +312,6 @@ const Swipeout = React.createClass({
           style={styleContent}
           onLayout={this._onLayout}
           {...this._panResponder.panHandlers}
-          onStartShouldSetResponderCapture={() => (this.state.openedLeft || this.state.openedRight)}
-          onMoveShouldSetResponderCapture={() => true}
         >
           {this.props.children}
         </View>
