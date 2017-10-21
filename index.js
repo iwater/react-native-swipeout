@@ -239,7 +239,6 @@ const Swipeout = createReactClass({
         this._close();
       }
     }
-
     //  Allow scroll
     if (this.props.scroll) this.props.scroll(true);
   },
@@ -387,6 +386,7 @@ const Swipeout = createReactClass({
           style={styleContent}
           onLayout={this._onLayout}
           {...this._panResponder.panHandlers}
+          onStartShouldSetResponderCapture={() => (this.state.openedLeft || this.state.openedRight)}
         >
           {this.props.children}
         </View>
